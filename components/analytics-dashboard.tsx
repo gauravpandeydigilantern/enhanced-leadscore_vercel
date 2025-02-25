@@ -48,14 +48,27 @@ export function AnalyticsDashboard() {
         <CardContent>
           <BarChart 
             data={[
-              { stage: "Awareness", conversion: 100 },
-              { stage: "Interest", conversion: 75 },
-              { stage: "Consideration", conversion: 50 },
-              { stage: "Intent", conversion: 35 },
-              { stage: "Evaluation", conversion: 25 },
-              { stage: "Purchase", conversion: 15 },
+              { stage: "Awareness", conversion: 100, dropoff: 0, insight: "Initial reach" },
+              { stage: "Interest", conversion: 75, dropoff: 25, insight: "Content engagement needed" },
+              { stage: "Consideration", conversion: 50, dropoff: 25, insight: "Value proposition unclear" },
+              { stage: "Intent", conversion: 35, dropoff: 15, insight: "Price sensitivity" },
+              { stage: "Evaluation", conversion: 25, dropoff: 10, insight: "Competitor comparison" },
+              { stage: "Purchase", conversion: 15, dropoff: 10, insight: "Final objections" },
             ]}
           />
+          <div className="mt-4 space-y-2 text-sm">
+            <p className="font-medium">Key Bottlenecks:</p>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 bg-red-500 rounded-full"/>
+                <span>Interest (-25%): Enhance content engagement</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 bg-orange-500 rounded-full"/>
+                <span>Consideration (-25%): Clarify value prop</span>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
 

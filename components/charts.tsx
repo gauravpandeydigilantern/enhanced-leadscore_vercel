@@ -49,6 +49,12 @@ export function BarChart({ data }: { data: any[] }) {
                 <div className="bg-background border rounded p-2 shadow-lg">
                   <p className="font-medium">{isFunnelData ? data.stage : data.name}</p>
                   <p className="text-sm">{isFunnelData ? `Conversion: ${data.conversion}%` : `Score: ${data.score}`}</p>
+                  {isFunnelData && data.dropoff > 0 && (
+                    <p className="text-sm text-red-500">Drop-off: -{data.dropoff}%</p>
+                  )}
+                  {isFunnelData && (
+                    <p className="text-sm text-muted-foreground">{data.insight}</p>
+                  )}
                   {!isFunnelData && <p className="text-sm text-muted-foreground">{data.impact}</p>}
                 </div>
               );
