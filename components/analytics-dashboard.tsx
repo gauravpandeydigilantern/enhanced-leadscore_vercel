@@ -23,9 +23,13 @@ export function AnalyticsDashboard() {
         <CardContent>
           <LineChart 
             data={[
-              { date: "2024-01", rate: 0.45 },
-              { date: "2024-02", rate: 0.52 },
-              { date: "2024-03", rate: 0.61 },
+              { date: "2025-02-18", rate: 0.48 },
+              { date: "2025-02-19", rate: 0.52 },
+              { date: "2025-02-20", rate: 0.49 },
+              { date: "2025-02-21", rate: 0.55 },
+              { date: "2025-02-22", rate: 0.51 },
+              { date: "2025-02-23", rate: 0.47 },
+              { date: "2025-02-24", rate: 0.53 },
             ]} 
           />
         </CardContent>
