@@ -48,11 +48,13 @@ export function AgentNetworkUML() {
   ];
 
   const edges: Edge[] = [
-    { id: 'e1', source: 'data-enrichment', target: 'lead-scoring', style: { stroke: '#4F46E5' } },
+    { id: 'e1', source: 'prompting', target: 'lead-scoring', style: { stroke: '#4F46E5' } },
     { id: 'e2', source: 'engagement-analysis', target: 'lead-scoring', style: { stroke: '#4F46E5' } },
     { id: 'e3', source: 'follow-up-ai', target: 'lead-scoring', style: { stroke: '#4F46E5' } },
     { id: 'e4', source: 'lead-scoring', target: 'pipeline-optimization', style: { stroke: '#4F46E5' } },
     { id: 'e5', source: 'lead-scoring', target: 'historical-analysis', style: { stroke: '#4F46E5' } },
+    { id: 'e6', source: 'prompting', target: 'follow-up-ai', style: { stroke: '#4F46E5' } },
+    { id: 'e7', source: 'prompting', target: 'engagement-analysis', style: { stroke: '#4F46E5' } },
   ];
 
   const onNodeClick = (event: any, node: Node) => {
