@@ -6,6 +6,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 
+
+const EXAMPLE_PROMPTS = [
+  "Show me lead conversion trends",
+  "Analyze recent drop-offs",
+  "Optimize follow-up strategy",
+  "Identify top performers"
+]
+
 export function AskEvoOrch() {
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState([])
@@ -19,9 +27,27 @@ export function AskEvoOrch() {
     // Add AI response logic here
   }
 
+
+  const handlePromptClick = (prompt) => {
+    setInput(prompt)
+  }
+
   return (
     <Card className="h-[600px] flex flex-col">
-      <CardContent className="flex-1 overflow-auto p-4 space-y-4">
+       <CardContent className="flex-1 overflow-auto p-4 space-y-4">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {EXAMPLE_PROMPTS.map((prompt) => (
+            <Button
+              key={prompt}
+              variant="outline"
+              size="sm"
+              onClick={() => handlePromptClick(prompt)}
+              className="text-xs"
+            >
+              {prompt}
+            </Button>
+          ))}
+        </div>
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             <div className={`rounded-lg px-4 py-2 max-w-[80%] ${
