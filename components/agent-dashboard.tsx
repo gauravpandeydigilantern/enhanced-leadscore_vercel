@@ -4,6 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Activity, Users, TrendingUp, Mail, PieChart, Clock } from "lucide-react"
 import Link from "next/link"
 
+import { AgentNetworkUML } from "./agent-network-uml"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 export function AgentDashboard() {
   const agents = [
     { name: "Data Enrichment", icon: Users, description: "Pulls missing lead info from external sources" },
@@ -15,7 +18,13 @@ export function AgentDashboard() {
   ]
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <Tabs defaultValue="grid" className="w-full">
+      <TabsList className="mb-4">
+        <TabsTrigger value="grid">Grid View</TabsTrigger>
+        <TabsTrigger value="network">Network View</TabsTrigger>
+      </TabsList>
+      <TabsContent value="grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {agents.map((agent) => (
         <Card key={agent.name} className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -31,5 +40,10 @@ export function AgentDashboard() {
         </Card>
       ))}
     </div>
+      </TabsContent>
+      <TabsContent value="network">
+        <AgentNetworkUML />
+      </TabsContent>
+    </Tabs>
   )
 }
