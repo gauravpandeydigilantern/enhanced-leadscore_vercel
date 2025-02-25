@@ -3,6 +3,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { LineChart, BarChart, HeatMap } from "@/components/charts"
+import { LeadTable } from "@/components/lead-table"
 
 export function AnalyticsDashboard() {
   return (
@@ -22,19 +23,12 @@ export function AnalyticsDashboard() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="col-span-3">
         <CardHeader>
           <CardTitle>Top Lead Scoring</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            {[1,2,3].map(i => (
-              <div key={i} className="flex justify-between items-center">
-                <span>Lead {i}</span>
-                <span className="font-bold">Score: {95 - (i*5)}</span>
-              </div>
-            ))}
-          </div>
+          <LeadTable />
         </CardContent>
       </Card>
 
