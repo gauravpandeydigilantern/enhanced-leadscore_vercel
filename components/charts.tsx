@@ -19,7 +19,8 @@ export function LineChart({ data }: { data: any[] }) {
 }
 
 export function BarChart({ data }: { data: any[] }) {
-  const sortedData = [...data].sort((a, b) => b.score - a.score);
+  const isFunnelData = data[0]?.stage && data[0]?.conversion;
+  const sortedData = isFunnelData ? data : [...data].sort((a, b) => b.score - a.score);
   
   return (
     <ResponsiveContainer width="100%" height={300}>
@@ -32,11 +33,11 @@ export function BarChart({ data }: { data: any[] }) {
         <XAxis 
           type="number" 
           domain={[0, 100]}
-          label={{ value: 'Lead Score', position: 'bottom' }} 
+          label={{ value: isFunnelData ? 'Conversion %' : 'Lead Score', position: 'bottom' }} 
         />
         <YAxis 
           type="category" 
-          dataKey="name" 
+          dataKey={isFunnelData ? "stage" : "name"} 
           width={120}
           tick={{ fontSize: 12 }}
         />
@@ -46,9 +47,9 @@ export function BarChart({ data }: { data: any[] }) {
               const data = payload[0].payload;
               return (
                 <div className="bg-background border rounded p-2 shadow-lg">
-                  <p className="font-medium">{data.name}</p>
-                  <p className="text-sm">Score: {data.score}</p>
-                  <p className="text-sm text-muted-foreground">{data.impact}</p>
+                  <p className="font-medium">{isFunnelData ? data.stage : data.name}</p>
+                  <p className="text-sm">{isFunnelData ? `Conversion: ${data.conversion}%` : `Score: ${data.score}`}</p>
+                  {!isFunnelData && <p className="text-sm text-muted-foreground">{data.impact}</p>}
                 </div>
               );
             }
@@ -56,13 +57,16 @@ export function BarChart({ data }: { data: any[] }) {
           }}
         />
         <Bar 
-          dataKey="score" 
+          dataKey={isFunnelData ? "conversion" : "score"} 
           background={{ fill: '#eee' }}
         >
           {sortedData.map((entry, index) => (
             <Cell 
               key={`cell-${index}`}
-              fill={entry.score > 70 ? '#22c55e' : entry.score > 40 ? '#3b82f6' : '#ef4444'}
+              fill={isFunnelData 
+                ? `hsl(${200 + index * 30}, 70%, 50%)`
+                : entry.score > 70 ? '#22c55e' : entry.score > 40 ? '#3b82f6' : '#ef4444'
+              }
             />
           ))}
         </Bar>
