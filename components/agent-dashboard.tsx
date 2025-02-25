@@ -14,7 +14,11 @@ export function AgentDashboard() {
     { 
       name: "Data Enrichment",
       icon: Users,
-      decisions: "1,234 decisions",
+      decisions: [
+        "Updated lead data quality score",
+        "Enriched contact information",
+        "Validated company details"
+      ],
       accuracy: "98%",
       latency: "85ms",
       capabilities: ["Text", "Behavioral"],
@@ -83,7 +87,18 @@ export function AgentDashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">{agent.decisions}</p>
+                <div className="space-y-2 mb-4">
+                  {Array.isArray(agent.decisions) ? (
+                    agent.decisions.map((decision, i) => (
+                      <p key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                        {decision}
+                      </p>
+                    ))
+                  ) : (
+                    <p className="text-sm text-muted-foreground">{agent.decisions}</p>
+                  )}
+                </div>
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <p className="text-2xl font-bold">{agent.accuracy}</p>

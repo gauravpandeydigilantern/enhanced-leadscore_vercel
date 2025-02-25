@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
-import { ArrowLeft, Target, Activity, Bell, Brain, AlertCircle } from "lucide-react";
+import { ArrowLeft, Target, Activity, Bell, Brain, AlertCircle, Power, Gauge, Shield } from "lucide-react";
 import Link from "next/link";
 import { LineChart } from "@/components/charts";
 
@@ -14,67 +14,61 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
   const [isAutomatic, setIsAutomatic] = useState(true);
   const [confidence, setConfidence] = useState([0.7]);
   const [riskTolerance, setRiskTolerance] = useState([0.5]);
+  const [autonomyLevel, setAutonomyLevel] = useState([0.8]);
 
   const agentName = params.name
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  const performanceData = [
-    { date: '2024-01', value: 65 },
-    { date: '2024-02', value: 75 },
-    { date: '2024-03', value: 85 },
-    { date: '2024-04', value: 80 },
-  ];
-
   return (
-    <div className="container mx-auto p-6">
-      <div className="flex items-center gap-4 mb-8">
-        <Button variant="ghost" asChild>
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
-          </Link>
-        </Button>
-        <h1 className="text-3xl font-bold">{agentName}</h1>
-        <div className={`px-2 py-1 rounded-full text-sm ${isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-          {isActive ? 'Active' : 'Inactive'}
-        </div>
-      </div>
+    <div className="container mx-auto p-4">
+      <Button variant="ghost" asChild className="mb-4">
+        <Link href="/">
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Dashboard
+        </Link>
+      </Button>
 
-      <div className="grid gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5" />
-              Agent Controls
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="grid md:grid-cols-3 gap-6">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-medium">Agent Status</h3>
-                  <p className="text-sm text-muted-foreground">Enable/disable agent</p>
-                </div>
-                <Switch checked={isActive} onCheckedChange={setIsActive} />
+      <div className="grid gap-4">
+        <h1 className="text-3xl font-bold">{agentName} Dashboard</h1>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>Agent Status</CardTitle>
+              <CardDescription>Control agent operation state</CardDescription>
+            </CardHeader>
+            <CardContent className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Power className="h-4 w-4" />
+                <span>Active Status</span>
               </div>
-            </div>
+              <Switch checked={isActive} onCheckedChange={setIsActive} />
+            </CardContent>
+          </Card>
 
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-medium">Automatic Mode</h3>
-                  <p className="text-sm text-muted-foreground">Allow autonomous decisions</p>
-                </div>
-                <Switch checked={isAutomatic} onCheckedChange={setIsAutomatic} />
+          <Card>
+            <CardHeader>
+              <CardTitle>Operation Mode</CardTitle>
+              <CardDescription>Toggle automatic/manual mode</CardDescription>
+            </CardHeader>
+            <CardContent className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Brain className="h-4 w-4" />
+                <span>Automatic Mode</span>
               </div>
-            </div>
+              <Switch checked={isAutomatic} onCheckedChange={setIsAutomatic} />
+            </CardContent>
+          </Card>
 
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-medium">Confidence Threshold</h3>
-                <p className="text-sm text-muted-foreground">Minimum confidence for actions</p>
+          <Card>
+            <CardHeader>
+              <CardTitle>Confidence Threshold</CardTitle>
+              <CardDescription>Minimum confidence for decisions</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
                 <Slider
                   value={confidence}
                   onValueChange={setConfidence}
@@ -82,13 +76,18 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
                   step={0.1}
                   className="w-full"
                 />
-                <p className="text-sm text-right">{(confidence[0] * 100).toFixed(0)}%</p>
+                <div className="text-right text-sm">{confidence[0] * 100}%</div>
               </div>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-medium">Risk Tolerance</h3>
-                <p className="text-sm text-muted-foreground">Acceptable risk level</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Risk Tolerance</CardTitle>
+              <CardDescription>Agent risk assessment level</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
                 <Slider
                   value={riskTolerance}
                   onValueChange={setRiskTolerance}
@@ -96,11 +95,31 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
                   step={0.1}
                   className="w-full"
                 />
-                <p className="text-sm text-right">{(riskTolerance[0] * 100).toFixed(0)}%</p>
+                <div className="text-right text-sm">{riskTolerance[0] * 100}%</div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Autonomy Level</CardTitle>
+              <CardDescription>Agent decision independence</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Slider
+                  value={autonomyLevel}
+                  onValueChange={setAutonomyLevel}
+                  max={1}
+                  step={0.1}
+                  className="w-full"
+                />
+                <div className="text-right text-sm">{autonomyLevel[0] * 100}%</div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -112,7 +131,7 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
             </CardHeader>
             <CardContent>
               <div className="h-[200px]">
-                <LineChart data={performanceData.map(d => ({ date: d.date, rate: d.value / 100 }))} />
+                <LineChart data={[{ date: '2024-01', rate: 0.65 }, { date: '2024-02', rate: 0.75 }, { date: '2024-03', rate: 0.85 }, { date: '2024-04', rate: 0.8 }]} />
               </div>
             </CardContent>
           </Card>
