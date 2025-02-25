@@ -97,10 +97,10 @@ export function HeatMap() {
   return (
     <div className="space-y-4">
       <div className="w-full overflow-x-auto">
-        <div className="grid grid-cols-[150px_repeat(7,1fr)] gap-2 min-w-[600px]">
-          <div className="font-medium">Channel</div>
+        <div className="grid grid-cols-[100px_repeat(7,60px)] gap-1 min-w-[520px]">
+          <div className="font-medium text-sm">Channel</div>
           {days.map(day => (
-            <div key={day} className="text-sm text-center font-medium">{day}</div>
+            <div key={day} className="text-xs text-center font-medium">{day}</div>
           ))}
           
           {data.map((channel) => (
@@ -109,7 +109,7 @@ export function HeatMap() {
               {channel.data.map((day) => (
                 <div
                   key={day.day}
-                  className="aspect-square rounded-md flex items-center justify-center text-xs"
+                  className="h-8 rounded-sm flex items-center justify-center text-[10px]"
                   style={{
                     backgroundColor: `hsl(200, 70%, ${100 - day.value}%)`,
                     color: day.value > 50 ? 'white' : 'black'
