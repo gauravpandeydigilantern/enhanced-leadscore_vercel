@@ -72,11 +72,12 @@ export function AnalyticsDashboard() {
         <CardContent>
           <BarChart 
             data={[
-              { score: "0-20", count: 10 },
-              { score: "21-40", count: 25 },
-              { score: "41-60", count: 40 },
-              { score: "61-80", count: 30 },
-              { score: "81-100", count: 15 },
+              { name: "Enterprise Corp", score: 92, impact: "High engagement, multiple demos requested" },
+              { name: "Tech Solutions", score: 85, impact: "Active in product trials" },
+              { name: "Global Systems", score: 78, impact: "Recent budget approval" },
+              { name: "Startup Inc", score: 65, impact: "Increasing website visits" },
+              { name: "Digital Services", score: 45, impact: "Early stage evaluation" },
+              { name: "Local Business", score: 32, impact: "Limited engagement" },
             ]}
           />
         </CardContent>

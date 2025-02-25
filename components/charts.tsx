@@ -19,30 +19,50 @@ export function LineChart({ data }: { data: any[] }) {
 }
 
 export function BarChart({ data }: { data: any[] }) {
-  const sortedData = [...data].sort((a, b) => b[Object.keys(b)[1]] - a[Object.keys(a)[1]]);
+  const sortedData = [...data].sort((a, b) => b.score - a.score);
   
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer width="100%" height={300}>
       <RechartsBarChart 
         data={sortedData}
         layout="vertical"
-        barCategoryGap={1}
+        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-        <XAxis type="number" domain={[0, 100]} />
-        <YAxis type="category" dataKey={Object.keys(data[0])[0]} width={100} />
+        <XAxis 
+          type="number" 
+          domain={[0, 100]}
+          label={{ value: 'Lead Score', position: 'bottom' }} 
+        />
+        <YAxis 
+          type="category" 
+          dataKey="name" 
+          width={120}
+          tick={{ fontSize: 12 }}
+        />
         <Tooltip 
-          formatter={(value: number) => [`${value}%`, 'Conversion Rate']}
-          cursor={{ fill: 'transparent' }}
+          content={({ active, payload }) => {
+            if (active && payload && payload.length) {
+              const data = payload[0].payload;
+              return (
+                <div className="bg-background border rounded p-2 shadow-lg">
+                  <p className="font-medium">{data.name}</p>
+                  <p className="text-sm">Score: {data.score}</p>
+                  <p className="text-sm text-muted-foreground">{data.impact}</p>
+                </div>
+              );
+            }
+            return null;
+          }}
         />
         <Bar 
-          dataKey={Object.keys(data[0])[1]} 
-          fill="#8884d8"
+          dataKey="score" 
+          background={{ fill: '#eee' }}
         >
           {sortedData.map((entry, index) => (
             <Cell 
               key={`cell-${index}`}
-              fill={`hsl(${220 + index * 15}, 70%, ${60 + index * 5}%)`}
+              fill={entry.score > 70 ? '#22c55e' : entry.score > 40 ? '#3b82f6' : '#ef4444'}
             />
           ))}
         </Bar>
