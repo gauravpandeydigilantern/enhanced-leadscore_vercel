@@ -36,16 +36,12 @@ export function HeatMap() {
   const channels = ['Website', 'Email', 'Social', 'Chat', 'Call'];
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   
-  // Generate sample engagement data (in real app, this would come from your backend)
-  const data = channels.map(channel => ({
+  // Generate stable sample data to avoid hydration errors
+  const data = channels.map((channel, i) => ({
     name: channel,
-    data: days.map(day => ({
+    data: days.map((day, j) => ({
       day,
-      value: Math.floor(Math.random() * 100),
-      // Add more meaningful engagement metrics here like:
-      // visits: 120,
-      // interactions: 45,
-      // conversions: 3,
+      value: ((i + 1) * (j + 1) * 7) % 100, // Deterministic value generation
     }))
   }));
 
