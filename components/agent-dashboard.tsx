@@ -13,11 +13,7 @@ export function AgentDashboard() {
     { 
       name: "Prompting",
       icon: Users,
-      decisions: [
-        "Updated lead data quality score",
-        "Enriched contact information",
-        "Validated company details"
-      ],
+      decisions: "Interactive prompt assistance",
       accuracy: "99%",
       latency: "75ms",
       capabilities: ["Text", "Chat", "Query"],
