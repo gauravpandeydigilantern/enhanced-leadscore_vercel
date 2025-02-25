@@ -56,7 +56,7 @@ export function AgentNetworkUML() {
   ];
 
   const onNodeClick = (event: any, node: Node) => {
-    router.push(`/agent/${node.id}`);
+    router.push(`/agent/${node.id.toLowerCase().replace("-", "-")}`);
   };
 
   return (
