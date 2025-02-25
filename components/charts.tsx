@@ -19,25 +19,30 @@ export function LineChart({ data }: { data: any[] }) {
 }
 
 export function BarChart({ data }: { data: any[] }) {
+  const sortedData = [...data].sort((a, b) => b[Object.keys(b)[1]] - a[Object.keys(a)[1]]);
+  
   return (
     <ResponsiveContainer width="100%" height={200}>
-      <RechartsBarChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey={Object.keys(data[0])[0]} />
-        <YAxis />
+      <RechartsBarChart 
+        data={sortedData}
+        layout="vertical"
+        barCategoryGap={1}
+      >
+        <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+        <XAxis type="number" domain={[0, 100]} />
+        <YAxis type="category" dataKey={Object.keys(data[0])[0]} width={100} />
         <Tooltip 
-          formatter={(value: number, name: string) => [`${value}%`, 'Drop-off Rate']}
-          labelStyle={{ color: '#666' }}
+          formatter={(value: number) => [`${value}%`, 'Conversion Rate']}
+          cursor={{ fill: 'transparent' }}
         />
         <Bar 
           dataKey={Object.keys(data[0])[1]} 
           fill="#8884d8"
-          radius={[4, 4, 0, 0]}
         >
-          {data.map((entry, index) => (
+          {sortedData.map((entry, index) => (
             <Cell 
               key={`cell-${index}`}
-              fill={entry[Object.keys(data[0])[1]] > 30 ? '#ff4d4f' : '#8884d8'}
+              fill={`hsl(${220 + index * 15}, 70%, ${60 + index * 5}%)`}
             />
           ))}
         </Bar>

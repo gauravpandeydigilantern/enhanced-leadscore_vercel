@@ -54,11 +54,12 @@ export function AnalyticsDashboard() {
         <CardContent>
           <BarChart 
             data={[
-              { stage: "Initial Contact", dropoff: 25 },
-              { stage: "Lead Qualification", dropoff: 40 },
-              { stage: "Discovery Call", dropoff: 30 },
-              { stage: "Proposal Sent", dropoff: 35 },
-              { stage: "Negotiation", dropoff: 20 },
+              { stage: "Awareness", conversion: 100 },
+              { stage: "Interest", conversion: 75 },
+              { stage: "Consideration", conversion: 50 },
+              { stage: "Intent", conversion: 35 },
+              { stage: "Evaluation", conversion: 25 },
+              { stage: "Purchase", conversion: 15 },
             ]}
           />
         </CardContent>
