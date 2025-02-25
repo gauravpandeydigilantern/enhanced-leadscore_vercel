@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,9 +7,9 @@ import { LeadTable } from "@/components/lead-table"
 export function AnalyticsDashboard() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <Card>
-        <CardHeader>
-          <CardTitle>Conversion Rates</CardTitle>
+      <Card className="hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Conversion Rates</CardTitle>
         </CardHeader>
         <CardContent>
           <LineChart 
@@ -23,27 +22,27 @@ export function AnalyticsDashboard() {
         </CardContent>
       </Card>
 
-      <Card className="col-span-3">
-        <CardHeader>
-          <CardTitle>Top Lead Scoring</CardTitle>
+      <Card className="col-span-3 hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Top Lead Scoring</CardTitle>
         </CardHeader>
         <CardContent>
           <LeadTable />
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Lead Activity Heatmap</CardTitle>
+      <Card className="hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Lead Activity Heatmap</CardTitle>
         </CardHeader>
         <CardContent>
           <HeatMap data={[]} />
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Bottleneck Insights</CardTitle>
+      <Card className="hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Bottleneck Insights</CardTitle>
         </CardHeader>
         <CardContent>
           <BarChart 
@@ -72,9 +71,9 @@ export function AnalyticsDashboard() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Lead Score Distribution</CardTitle>
+      <Card className="hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Lead Score Distribution</CardTitle>
         </CardHeader>
         <CardContent>
           <BarChart 
@@ -90,9 +89,9 @@ export function AnalyticsDashboard() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Attribution Modeling</CardTitle>
+      <Card className="hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Attribution Modeling</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
