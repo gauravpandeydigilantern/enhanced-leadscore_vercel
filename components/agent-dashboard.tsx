@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button"
@@ -12,16 +11,16 @@ import { Badge } from "./ui/badge"
 export function AgentDashboard() {
   const agents = [
     { 
-      name: "Data Enrichment",
+      name: "Prompting",
       icon: Users,
       decisions: [
         "Updated lead data quality score",
         "Enriched contact information",
         "Validated company details"
       ],
-      accuracy: "98%",
-      latency: "85ms",
-      capabilities: ["Text", "Behavioral"],
+      accuracy: "99%",
+      latency: "75ms",
+      capabilities: ["Text", "Chat", "Query"],
       hasWarning: true
     },
     {

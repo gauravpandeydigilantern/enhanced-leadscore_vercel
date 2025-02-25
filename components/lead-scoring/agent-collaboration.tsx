@@ -1,7 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 
 const data = [
-  { agent: "Data Enrichment", efficiency: 85 },
+  { agent: "Prompting", efficiency: 95 },
   { agent: "Engagement Analysis", efficiency: 92 },
   { agent: "Follow-up AI", efficiency: 78 },
   { agent: "Pipeline Optimization", efficiency: 88 },

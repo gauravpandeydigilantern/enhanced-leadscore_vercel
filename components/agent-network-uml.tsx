@@ -10,8 +10,8 @@ export function AgentNetworkUML() {
 
   const nodes: Node[] = [
     { 
-      id: 'data-enrichment',
-      data: { label: 'Data Enrichment' },
+      id: 'prompting',
+      data: { label: 'Prompting' },
       position: { x: 250, y: 0 },
       style: { background: '#4F46E5', color: 'white', padding: '10px' }
     },
