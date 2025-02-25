@@ -7,6 +7,15 @@ import { LeadTable } from "@/components/lead-table"
 export function AnalyticsDashboard() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <Card className="col-span-2 hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Lead Activity Heatmap</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <HeatMap data={[]} />
+        </CardContent>
+      </Card>
+
       <Card className="hover:shadow-lg transition-all duration-200">
         <CardHeader className="space-y-1">
           <CardTitle className="text-xl font-semibold">Conversion Rates</CardTitle>
@@ -31,14 +40,7 @@ export function AnalyticsDashboard() {
         </CardContent>
       </Card>
 
-      <Card className="hover:shadow-lg transition-all duration-200">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-xl font-semibold">Lead Activity Heatmap</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <HeatMap data={[]} />
-        </CardContent>
-      </Card>
+      
 
       <Card className="hover:shadow-lg transition-all duration-200">
         <CardHeader className="space-y-1">
