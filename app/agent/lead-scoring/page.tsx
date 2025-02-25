@@ -1,8 +1,11 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Switch } from "@/components/ui/switch"
+import { Slider } from "@/components/ui/slider"
 import { ArrowLeft, Brain, Activity, BotIcon as Robot, Users, Layers, Scale } from "lucide-react"
 import Link from "next/link"
 import { ContextDecisions } from "@/components/lead-scoring/context-decisions"
@@ -21,103 +24,90 @@ export default function LeadScoringAgentDashboard() {
           Back to Dashboard
         </Link>
       </Button>
-      <h1 className="text-3xl font-bold mb-6">Lead Scoring Agent Dashboard</h1>
+      
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">Lead Scoring Agent Dashboard</h1>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Switch id="agent-status" />
+            <label htmlFor="agent-status">Active</label>
+          </div>
+          <Button variant="outline">Reset Agent</Button>
+        </div>
+      </div>
 
-      <Tabs defaultValue="context" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 md:grid-cols-6">
-          <TabsTrigger value="context">
-            <Brain className="mr-2 h-4 w-4" />
-            Context
-          </TabsTrigger>
-          <TabsTrigger value="awareness">
-            <Activity className="mr-2 h-4 w-4" />
-            Awareness
-          </TabsTrigger>
-          <TabsTrigger value="autonomy">
-            <Robot className="mr-2 h-4 w-4" />
-            Autonomy
-          </TabsTrigger>
-          <TabsTrigger value="collaboration">
-            <Users className="mr-2 h-4 w-4" />
-            Collaboration
-          </TabsTrigger>
-          <TabsTrigger value="multimodal">
-            <Layers className="mr-2 h-4 w-4" />
-            Multimodal
-          </TabsTrigger>
-          <TabsTrigger value="reasoning">
-            <Scale className="mr-2 h-4 w-4" />
-            Reasoning
-          </TabsTrigger>
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Performance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">92%</div>
+            <p className="text-sm text-muted-foreground">Accuracy Rate</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Processing</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">95ms</div>
+            <p className="text-sm text-muted-foreground">Average Latency</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Decisions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">3,456</div>
+            <p className="text-sm text-muted-foreground">Total Processed</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Agent Controls</CardTitle>
+          <CardDescription>Configure agent behavior and thresholds</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Automatic Mode</label>
+            <div className="flex items-center gap-2">
+              <Switch id="automatic-mode" />
+              <span className="text-sm text-muted-foreground">Enable automatic decisions</span>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Confidence Threshold</label>
+            <Slider defaultValue={[75]} max={100} step={1} className="w-full" />
+            <span className="text-sm text-muted-foreground">Minimum confidence score required for automatic decisions</span>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Processing Priority</label>
+            <Slider defaultValue={[50]} max={100} step={1} className="w-full" />
+            <span className="text-sm text-muted-foreground">Set priority level for lead processing</span>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Tabs defaultValue="decisions" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="decisions">Decisions</TabsTrigger>
+          <TabsTrigger value="awareness">Awareness</TabsTrigger>
+          <TabsTrigger value="autonomy">Autonomy</TabsTrigger>
+          <TabsTrigger value="collaboration">Collaboration</TabsTrigger>
+          <TabsTrigger value="capabilities">Capabilities</TabsTrigger>
+          <TabsTrigger value="reasoning">Reasoning</TabsTrigger>
         </TabsList>
-        <TabsContent value="context">
-          <Card>
-            <CardHeader>
-              <CardTitle>Context-Based Decisions</CardTitle>
-              <CardDescription>Historical AI lead score adjustments</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ContextDecisions />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="awareness">
-          <Card>
-            <CardHeader>
-              <CardTitle>Situational Awareness</CardTitle>
-              <CardDescription>Alerts on sudden lead activity changes</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <SituationalAwareness />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="autonomy">
-          <Card>
-            <CardHeader>
-              <CardTitle>Autonomy</CardTitle>
-              <CardDescription>Level of AI-driven vs. human-driven actions</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <AutonomyLevel />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="collaboration">
-          <Card>
-            <CardHeader>
-              <CardTitle>Multiagent Collaboration</CardTitle>
-              <CardDescription>Coordination efficiency with other agents</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <AgentCollaboration />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="multimodal">
-          <Card>
-            <CardHeader>
-              <CardTitle>Multimodal Capabilities</CardTitle>
-              <CardDescription>Data processing from text, audio, and behavioral analytics</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <MultimodalCapabilities />
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="reasoning">
-          <Card>
-            <CardHeader>
-              <CardTitle>Reasoning Abilities</CardTitle>
-              <CardDescription>Transparent breakdown of why a lead received a specific score</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ReasoningAbilities />
-            </CardContent>
-          </Card>
-        </TabsContent>
+        <TabsContent value="decisions"><ContextDecisions /></TabsContent>
+        <TabsContent value="awareness"><SituationalAwareness /></TabsContent>
+        <TabsContent value="autonomy"><AutonomyLevel /></TabsContent>
+        <TabsContent value="collaboration"><AgentCollaboration /></TabsContent>
+        <TabsContent value="capabilities"><MultimodalCapabilities /></TabsContent>
+        <TabsContent value="reasoning"><ReasoningAbilities /></TabsContent>
       </Tabs>
     </div>
   )
 }
-
