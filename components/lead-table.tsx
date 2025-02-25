@@ -1,4 +1,3 @@
-
 "use client"
 
 import {
@@ -19,17 +18,7 @@ const leads = [
     score: 92,
     status: "Hot",
     insights: "High engagement across all channels, multiple demo requests",
-    action: "Schedule Executive Meeting",
-    emailTemplate: `Subject: Executive Briefing - Next Steps
-    
-Hi Sarah,
-
-Following your recent interest in our platform, I'd like to schedule an executive meeting to discuss how we can help Enterprise Corp achieve its goals.
-
-Would you be available this week for a 30-minute discussion?
-
-Best regards`,
-    tasks: ["Schedule executive meeting", "Prepare ROI presentation", "Review recent demo feedback"]
+    action: "Send personalized follow-up email with an executive meeting invitation.",
   },
   {
     name: "Michael Chen",
@@ -37,17 +26,7 @@ Best regards`,
     score: 85,
     status: "Hot",
     insights: "Active in product trials, high resource downloads",
-    action: "Send Custom ROI Analysis",
-    emailTemplate: `Subject: Your Custom ROI Analysis
-    
-Hi Michael,
-
-Based on your product trial data, I've prepared a detailed ROI analysis showing potential impact for Tech Solutions.
-
-Would you like to schedule a call to review the findings?
-
-Best regards`,
-    tasks: ["Generate ROI report", "Follow up on trial feedback", "Schedule analysis review"]
+    action: "Send a detailed ROI analysis email with scheduling options for review.",
   },
   {
     name: "Emma Davis",
@@ -55,15 +34,7 @@ Best regards`,
     score: 78,
     status: "Warm",
     insights: "Recent budget approval, increasing website visits",
-    action: "Schedule Product Demo",
-    emailTemplate: `Subject: Product Demo for Global Systems
-    
-Hi Emma,
-
-I noticed your team's increased interest in our platform. Would you like to schedule a personalized demo focusing on your specific use cases?
-
-Best regards`,
-    tasks: ["Set up demo environment", "Prepare custom demo script", "Follow up post-demo"]
+    action: "Invite for a personalized product demo with key decision-makers.",
   },
   {
     name: "Alex Kumar",
@@ -71,15 +42,7 @@ Best regards`,
     score: 65,
     status: "Warm",
     insights: "Engaged with email campaigns, moderate web activity",
-    action: "Share Case Studies",
-    emailTemplate: `Subject: Success Stories Similar to Startup Inc
-    
-Hi Alex,
-
-I thought you might be interested in how similar companies have achieved success with our platform. Here are some relevant case studies.
-
-Best regards`,
-    tasks: ["Send relevant case studies", "Monitor engagement", "Schedule follow-up call"]
+    action: "Share relevant case studies with a tailored industry insights email.",
   },
   {
     name: "Lisa Thompson",
@@ -87,15 +50,7 @@ Best regards`,
     score: 45,
     status: "Cold",
     insights: "Limited engagement, early evaluation phase",
-    action: "Nurture with Content",
-    emailTemplate: `Subject: Resources for Digital Services
-    
-Hi Lisa,
-
-I noticed you recently explored our platform. Here are some resources that might help you understand how we can support Digital Services.
-
-Best regards`,
-    tasks: ["Send nurture content", "Set up drip campaign", "Monitor engagement metrics"]
+    action: "Send a nurturing email with educational resources and testimonials.",
   }
 ]
 
@@ -110,9 +65,8 @@ export function LeadTable() {
             <TableHead>Score</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>AI Insights</TableHead>
+            <TableHead>Next Best Action</TableHead>
             <TableHead>Action</TableHead>
-            <TableHead>Email Template</TableHead>
-            <TableHead>Tasks</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -135,20 +89,8 @@ export function LeadTable() {
               </TableCell>
               <TableCell className="max-w-xs truncate">{lead.insights}</TableCell>
               <TableCell>{lead.action}</TableCell>
-              <TableCell className="max-w-xs">
-                <Button variant="outline" className="text-xs" onClick={() => {
-                  navigator.clipboard.writeText(lead.emailTemplate);
-                  // You could add a toast notification here
-                }}>
-                  Copy Email Template
-                </Button>
-              </TableCell>
               <TableCell>
-                <ul className="list-disc list-inside text-sm">
-                  {lead.tasks.map((task, i) => (
-                    <li key={i}>{task}</li>
-                  ))}
-                </ul>
+                <Button variant="outline" className="text-xs">Perform Action</Button>
               </TableCell>
             </TableRow>
           ))}

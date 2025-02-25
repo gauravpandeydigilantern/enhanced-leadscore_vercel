@@ -12,7 +12,11 @@ export function AnalyticsDashboard() {
           <CardTitle className="text-xl font-semibold">Lead Activity Heatmap</CardTitle>
         </CardHeader>
         <CardContent>
-          <HeatMap data={[]} />
+          <HeatMap 
+            data={[]} 
+            xAxisLabel="Date" 
+            yAxisLabel="Activity Level" 
+          />
         </CardContent>
       </Card>
 
@@ -23,14 +27,16 @@ export function AnalyticsDashboard() {
         <CardContent>
           <LineChart 
             data={[
-              { date: "2025-02-18", rate: 0.48 },
-              { date: "2025-02-19", rate: 0.52 },
-              { date: "2025-02-20", rate: 0.49 },
-              { date: "2025-02-21", rate: 0.55 },
-              { date: "2025-02-22", rate: 0.51 },
-              { date: "2025-02-23", rate: 0.47 },
-              { date: "2025-02-24", rate: 0.53 },
+              { date: "2025-02-18", rate: 48},
+              { date: "2025-02-19", rate: 35 },
+              { date: "2025-02-20", rate: 49 },
+              { date: "2025-02-21", rate: 75 },
+              { date: "2025-02-22", rate: 51 },
+              { date: "2025-02-23", rate: 74 },
+              { date: "2025-02-24", rate: 53 },
             ]} 
+            xAxisLabel="Date"
+            yAxisLabel="Conversion Rate (%)"
           />
         </CardContent>
       </Card>
@@ -43,8 +49,6 @@ export function AnalyticsDashboard() {
           <LeadTable />
         </CardContent>
       </Card>
-
-      
 
       <Card className="hover:shadow-lg transition-all duration-200">
         <CardHeader className="space-y-1">
@@ -60,6 +64,8 @@ export function AnalyticsDashboard() {
               { stage: "Evaluation", conversion: 25, dropoff: 10, insight: "Competitor comparison" },
               { stage: "Purchase", conversion: 15, dropoff: 10, insight: "Final objections" },
             ]}
+            xAxisLabel="Stage"
+            yAxisLabel="Percentage (%)"
           />
           <div className="mt-4 space-y-2 text-sm">
             <p className="font-medium">Key Bottlenecks:</p>
@@ -91,6 +97,8 @@ export function AnalyticsDashboard() {
               { name: "Digital Services", score: 45, impact: "Early stage evaluation" },
               { name: "Local Business", score: 32, impact: "Limited engagement" },
             ]}
+            xAxisLabel="Lead Name"
+            yAxisLabel="Score"
           />
         </CardContent>
       </Card>
