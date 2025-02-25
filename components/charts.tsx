@@ -1,6 +1,7 @@
 
 "use client"
 
+import * as React from 'react'
 import { Line, Bar, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, LineChart as RechartsLineChart, BarChart as RechartsBarChart } from 'recharts'
 
 export function LineChart({ data }: { data: any[] }) {
