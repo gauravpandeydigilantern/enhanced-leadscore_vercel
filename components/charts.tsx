@@ -25,8 +25,22 @@ export function BarChart({ data }: { data: any[] }) {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={Object.keys(data[0])[0]} />
         <YAxis />
-        <Tooltip />
-        <Bar dataKey={Object.keys(data[0])[1]} fill="#8884d8" />
+        <Tooltip 
+          formatter={(value: number, name: string) => [`${value}%`, 'Drop-off Rate']}
+          labelStyle={{ color: '#666' }}
+        />
+        <Bar 
+          dataKey={Object.keys(data[0])[1]} 
+          fill="#8884d8"
+          radius={[4, 4, 0, 0]}
+        >
+          {data.map((entry, index) => (
+            <Cell 
+              key={`cell-${index}`}
+              fill={entry[Object.keys(data[0])[1]] > 30 ? '#ff4d4f' : '#8884d8'}
+            />
+          ))}
+        </Bar>
       </RechartsBarChart>
     </ResponsiveContainer>
   )
