@@ -54,14 +54,30 @@ export default function LeadScoringAgentDashboard() {
         <h1 className="text-3xl font-bold">Lead Scoring Agent Dashboard</h1>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <Switch
-              id="agent-status"
-              checked={isActive}
-              onCheckedChange={setIsActive}
-            />
-            <label htmlFor="agent-status">Active</label>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="flex items-center gap-2">
+                  <Switch
+                    id="agent-status"
+                    checked={isActive}
+                    onCheckedChange={setIsActive}
+                  />
+                  <label htmlFor="agent-status">Active</label>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="max-w-xs">When active, the agent continuously processes and scores leads. Deactivating will pause all automated lead scoring operations.</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
-          <Button variant="outline">Reset Agent</Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline">Reset Agent</Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="max-w-xs">Resets the agent to its default configuration, clearing learned patterns and custom thresholds. Use with caution.</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
       </div>
 
