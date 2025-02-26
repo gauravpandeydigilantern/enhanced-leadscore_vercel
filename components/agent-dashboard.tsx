@@ -91,14 +91,13 @@ export function AgentDashboard() {
               <CardHeader className="space-y-1">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold">{agent.sequence}</span>
                     <agent.icon className="h-5 w-5 text-primary" />
+                    <CardTitle className="text-lg">{agent.name}</CardTitle>
                   </div>
-                  <Badge variant="outline" className="text-lg font-semibold">
+                  <Badge variant="outline" className="text-sm">
                     {agent.accuracy}
                   </Badge>
                 </div>
-                <CardTitle className="text-lg">{agent.name}</CardTitle>
                 <CardDescription>{agent.title}</CardDescription>
                 <Badge variant="secondary" className="mt-1">{agent.category}</Badge>
               </CardHeader>
