@@ -10,55 +10,49 @@ import { Badge } from "./ui/badge"
 
 export function AgentDashboard() {
   const agents = [
-    { 
+    {
       name: "Prompting",
       icon: Users,
-      decisions: "Interactive prompt assistance",
+      decisions: ["Generates dynamic queries across agents", "Creates conversational insights", "Provides real-time recommendations"],
       accuracy: "99%",
-      latency: "75ms",
       capabilities: ["Text", "Chat", "Query"],
       hasWarning: true
     },
     {
       name: "Engagement Analysis",
       icon: Activity,
-      decisions: "2,345 decisions",
+      decisions: ["Monitors lead interactions", "Calculates engagement scores", "Applies time decay models"],
       accuracy: "95%",
-      latency: "120ms",
-      capabilities: ["Text", "Audio", "Behavioral"]
+      capabilities: ["Engagement", "Analytics", "Behavioral"]
     },
     {
       name: "Lead Scoring",
       icon: TrendingUp,
-      decisions: "3,456 decisions",
+      decisions: ["Combines engagement data", "Applies ML models", "Predicts conversion probability"],
       accuracy: "92%",
-      latency: "95ms",
-      capabilities: ["Text", "Behavioral"],
+      capabilities: ["ML", "Prediction", "Scoring"],
       hasWarning: true
     },
     {
       name: "Follow-up AI",
       icon: Mail,
-      decisions: "4,567 decisions",
+      decisions: ["Determines optimal follow-up actions", "Selects communication channels", "Uses Multi-Armed Bandit algorithms"],
       accuracy: "94%",
-      latency: "150ms",
-      capabilities: ["Text", "Audio"]
+      capabilities: ["Automation", "Personalization", "Optimization"]
     },
     {
       name: "Pipeline Optimization",
       icon: PieChart,
-      decisions: "5,678 decisions",
+      decisions: ["Identifies dropoff points", "Suggests improvements", "Adjusts AI model weightings"],
       accuracy: "91%",
-      latency: "200ms",
-      capabilities: ["Text", "Behavioral"]
+      capabilities: ["Analysis", "Optimization", "Strategy"]
     },
     {
       name: "Historical Analysis",
       icon: Clock,
-      decisions: "6,789 decisions",
+      decisions: ["Compares current leads", "Calculates similarity scores", "Enhances prediction accuracy"],
       accuracy: "96%",
-      latency: "180ms",
-      capabilities: ["Text", "Behavioral"],
+      capabilities: ["Pattern Recognition", "Analysis", "Prediction"],
       errors: 1
     }
   ]
@@ -94,15 +88,9 @@ export function AgentDashboard() {
                     <p className="text-sm text-muted-foreground">{agent.decisions}</p>
                   )}
                 </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <p className="text-2xl font-bold">{agent.accuracy}</p>
-                    <p className="text-xs text-muted-foreground">Accuracy</p>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold">{agent.latency}</p>
-                    <p className="text-xs text-muted-foreground">Latency</p>
-                  </div>
+                <div className="mb-4">
+                  <p className="text-2xl font-bold">{agent.accuracy}</p>
+                  <p className="text-xs text-muted-foreground">Accuracy</p>
                 </div>
                 <div className="flex gap-2">
                   {agent.capabilities.map((capability) => (
