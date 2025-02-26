@@ -41,6 +41,7 @@ export default function LeadScoringAgentDashboard() {
   const [processingPriority, setProcessingPriority] = useState([5]);
 
   return (
+    <TooltipProvider>
     <div className="container mx-auto p-4">
       <Button variant="ghost" asChild className="mb-4">
         <Link href="/">
