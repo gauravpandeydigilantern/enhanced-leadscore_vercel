@@ -64,8 +64,9 @@ export function AnalyticsDashboard() {
               { stage: "Evaluation", conversion: 25, dropoff: 10, insight: "Competitor comparison" },
               { stage: "Purchase", conversion: 15, dropoff: 10, insight: "Final objections" },
             ]}
-            xAxisLabel="Stage"
-            yAxisLabel="Percentage (%)"
+            xAxisLabel="Percentage (%)"
+            yAxisLabel="Stage"
+            
           />
           <div className="mt-4 space-y-2 text-sm">
             <p className="font-medium">Key Bottlenecks:</p>
@@ -97,8 +98,8 @@ export function AnalyticsDashboard() {
               { name: "Digital Services", score: 45, impact: "Early stage evaluation" },
               { name: "Local Business", score: 32, impact: "Limited engagement" },
             ]}
-            xAxisLabel="Lead Name"
-            yAxisLabel="Score"
+            xAxisLabel="Score"
+            yAxisLabel="Company"
           />
         </CardContent>
       </Card>

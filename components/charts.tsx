@@ -4,21 +4,42 @@
 import * as React from 'react'
 import { Line, Bar, Cell, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, LineChart as RechartsLineChart, BarChart as RechartsBarChart } from 'recharts'
 
-export function LineChart({ data }: { data: any[] }) {
+export function LineChart({ data, xAxisLabel, yAxisLabel }: { 
+  data: any[],
+  xAxisLabel?: string,
+  yAxisLabel?: string 
+}) {
   return (
     <ResponsiveContainer width="100%" height={200}>
-      <RechartsLineChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis />
-        <Tooltip />
-        <Line type="monotone" dataKey="rate" stroke="#8884d8" />
-      </RechartsLineChart>
-    </ResponsiveContainer>
+    <RechartsLineChart data={data}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis 
+        dataKey="date" 
+        label={{ 
+          value: xAxisLabel,
+          position: 'bottom',
+          offset: 0
+        }}
+      />
+      <YAxis
+        label={{
+          value: yAxisLabel,
+          angle: -90,
+          position: 'insideLeft'
+        }}
+      />
+      <Tooltip />
+      <Line type="monotone" dataKey="rate" stroke="#8884d8" />
+    </RechartsLineChart>
+  </ResponsiveContainer>
   )
 }
 
-export function BarChart({ data }: { data: any[] }) {
+export function BarChart({ data, xAxisLabel, yAxisLabel }: { 
+  data: any[],
+  xAxisLabel?: string,
+  yAxisLabel?: string 
+}) {
   const isFunnelData = data[0]?.stage && data[0]?.conversion;
   const sortedData = isFunnelData ? data : [...data].sort((a, b) => b.score - a.score);
   
@@ -27,19 +48,28 @@ export function BarChart({ data }: { data: any[] }) {
       <RechartsBarChart 
         data={sortedData}
         layout="vertical"
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 20, right: 30, left: 20, bottom: 25 }}
       >
         <CartesianGrid strokeDasharray="3 3" horizontal={false} />
         <XAxis 
           type="number" 
           domain={[0, 100]}
-          label={{ value: isFunnelData ? 'Conversion %' : 'Lead Score', position: 'bottom' }} 
+          label={{ 
+            value: xAxisLabel || (isFunnelData ? 'Conversion %' : 'Company Name'),
+            position: 'bottom',
+            offset: 15
+          }}
         />
         <YAxis 
           type="category" 
           dataKey={isFunnelData ? "stage" : "name"} 
           width={120}
           tick={{ fontSize: 12 }}
+          label={{
+            value: yAxisLabel,
+            angle: -90,
+            position: 'insideLeft'
+          }}
         />
         <Tooltip 
           content={({ active, payload }) => {
