@@ -1,76 +1,101 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { AgentNetworkUML } from "@/components/AgentNetwork";
+import LeadList from "@/components/LeadList";
+import { dummyLeads } from "@/lib/dummyData";
 
-"use client";
+interface Lead {
+  id: number; // id is a number
+  title: string | null;
+  source: string;
+  email: string;
+  name: string;
+  company: string;
+  phone: string | null;
+  enrichedData: unknown;
+  engagementScore: number | null;
+  leadScore: number | null;
+  currentAgent: string | null;
+  status: string;
+  isQualified: boolean | null;
+  createdAt: Date | null;
+}
 
-import ReactFlow, { Node, Edge, Controls } from 'reactflow';
-import 'reactflow/dist/style.css';
-import { useRouter } from 'next/navigation';
+export default function Dashboard() {
+  const leads = dummyLeads; // Ensure dummyLeads conforms to the Lead interface
 
-export function AgentNetworkUML() {
-  const router = useRouter();
-
-  const nodes: Node[] = [
-    { 
-      id: 'prompting',
-      data: { label: 'Prompting' },
-      position: { x: 250, y: 0 },
-      style: { background: '#4F46E5', color: 'white', padding: '10px' }
-    },
-    {
-      id: 'engagement-analysis',
-      data: { label: 'Engagement Analysis' },
-      position: { x: 0, y: 100 },
-      style: { background: '#4F46E5', color: 'white', padding: '10px' }
-    },
-    {
-      id: 'lead-scoring',
-      data: { label: 'Lead Scoring' },
-      position: { x: 250, y: 100 },
-      style: { background: '#4F46E5', color: 'white', padding: '10px' }
-    },
-    {
-      id: 'follow-up-ai',
-      data: { label: 'Follow-up AI' },
-      position: { x: 500, y: 100 },
-      style: { background: '#4F46E5', color: 'white', padding: '10px' }
-    },
-    {
-      id: 'pipeline-optimization',
-      data: { label: 'Pipeline Optimization' },
-      position: { x: 125, y: 200 },
-      style: { background: '#4F46E5', color: 'white', padding: '10px' }
-    },
-    {
-      id: 'historical-analysis',
-      data: { label: 'Historical Analysis' },
-      position: { x: 375, y: 200 },
-      style: { background: '#4F46E5', color: 'white', padding: '10px' }
-    },
-  ];
-
-  const edges: Edge[] = [
-    { id: 'e1', source: 'prompting', target: 'lead-scoring', style: { stroke: '#4F46E5' } },
-    { id: 'e2', source: 'engagement-analysis', target: 'lead-scoring', style: { stroke: '#4F46E5' } },
-    { id: 'e3', source: 'follow-up-ai', target: 'lead-scoring', style: { stroke: '#4F46E5' } },
-    { id: 'e4', source: 'lead-scoring', target: 'pipeline-optimization', style: { stroke: '#4F46E5' } },
-    { id: 'e5', source: 'lead-scoring', target: 'historical-analysis', style: { stroke: '#4F46E5' } },
-    { id: 'e6', source: 'prompting', target: 'follow-up-ai', style: { stroke: '#4F46E5' } },
-    { id: 'e7', source: 'prompting', target: 'engagement-analysis', style: { stroke: '#4F46E5' } },
-  ];
-
-  const onNodeClick = (event: any, node: Node) => {
-    router.push(`/agent/${node.id.toLowerCase().replace("-", "-")}`);
+  const stats = {
+    total: leads.length,
+    qualified: leads.filter((l) => l.isQualified).length,
+    processing: leads.filter((l) => !l.isQualified).length,
   };
 
   return (
-    <div style={{ width: '100%', height: '600px', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
-      <ReactFlow 
-        nodes={nodes}
-        edges={edges}
-        onNodeClick={onNodeClick}
-        fitView
-      >
-        <Controls />
-      </ReactFlow>
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto p-6">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold">AGnet Network Dashboard</h1>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Total Leads
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stats.total}</div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Qualified Leads
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-green-600">
+                {stats.qualified}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Processing
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-blue-600">
+                {stats.processing}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle>Agent Network</CardTitle>
+            </CardHeader>
+            <CardContent className="h-[400px]">
+              <AgentNetworkUML leads={leads} />
+            </CardContent>
+          </Card>
+
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle>Lead Processing Queue</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <LeadList leads={leads} isLoading={false} />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ import {
   Clock,
 } from "lucide-react";
 import Link from "next/link";
-import { AgentNetworkUML } from "./agent-network-uml";
+import  AgentNetworkUML  from "./agent-network-uml";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "./ui/badge";
 

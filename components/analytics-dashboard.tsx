@@ -14,6 +14,16 @@ const data = [
 ];
 
 export function AnalyticsDashboard() {
+
+  const data = [
+    { stage: "Awareness", conversion: 100, dropoff: 0, insight: "Initial reach" },
+    { stage: "Interest", conversion: 75, dropoff: 25, insight: "Content engagement needed" },
+    { stage: "Consideration", conversion: 50, dropoff: 25, insight: "Value proposition unclear" },
+    { stage: "Intent", conversion: 35, dropoff: 15, insight: "Price sensitivity" },
+    { stage: "Evaluation", conversion: 25, dropoff: 10, insight: "Competitor comparison" },
+    { stage: "Purchase", conversion: 15, dropoff: 10, insight: "Final objections" },
+  ];
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <Card className="col-span-2 hover:shadow-lg transition-all duration-200">
