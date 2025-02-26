@@ -35,6 +35,9 @@ import { ReasoningAbilities } from "@/components/lead-scoring/reasoning-abilitie
 
 export default function LeadScoringAgentDashboard() {
   const [isActive, setIsActive] = useState(true);
+
+  return (
+    <TooltipProvider>
   const [isAutomatic, setIsAutomatic] = useState(true);
   const [confidence, setConfidence] = useState([75]);
   const [riskTolerance, setRiskTolerance] = useState([50]);
@@ -220,5 +223,6 @@ export default function LeadScoringAgentDashboard() {
         </TabsContent>
       </Tabs>
     </div>
+    </TooltipProvider>
   );
 }
