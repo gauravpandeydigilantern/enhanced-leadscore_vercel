@@ -88,7 +88,7 @@ export function AgentNetworkUML({ leads }: AgentNetworkProps) {
       type: 'custom',
       position: { x: 1050, y: 400 },
       data: {
-        name: '3️⃣ Follow-Up AI',
+        name: '3️⃣ Follow-up',
         count: agentCounts['FollowUpAgent'] || 0,
         description: '✉️ Personalize outreach',
         variant: 'agent'

@@ -54,7 +54,7 @@ export function AgentDashboard() {
       category: "Evaluation",
     },
     {
-      name: "Follow-up AI",
+      name: "Follow-up",
       sequence: "3️⃣",
       icon: Mail,
       title: "Automated Response System",
@@ -152,7 +152,7 @@ export function AgentDashboard() {
                         "Evaluate and rank leads based on their likelihood to convert using ML models and behavioral data"}
                       {agent.name === "Engagement Analysis" &&
                         "Track and analyze all lead interactions to generate meaningful engagement metrics"}
-                      {agent.name === "Follow-up AI" &&
+                      {agent.name === "Follow-up" &&
                         "Automate and optimize lead follow-up actions based on scoring and engagement data"}
                       {agent.name === "Pipeline Optimization" &&
                         "Identify and resolve bottlenecks in the sales funnel to improve conversion rates"}
@@ -178,7 +178,7 @@ export function AgentDashboard() {
                     <p className="text-sm text-muted-foreground">
                       {agent.name === "Lead Scoring" && "Data Collection → Feature Engineering → ML Model Application → Score Generation → CRM Update"}
                       {agent.name === "Engagement Analysis" && "Event Tracking → Data Processing → Score Calculation → Time Decay Application → Metric Output"}
-                      {agent.name === "Follow-up AI" && "Score Analysis → Channel Selection → Content Generation → Action Execution → Performance Tracking"}
+                      {agent.name === "Follow-up" && "Score Analysis → Channel Selection → Content Generation → Action Execution → Performance Tracking"}
                       {agent.name === "Pipeline Optimization" && "Funnel Analysis → Bottleneck Detection → Strategy Generation → Model Adjustment → Performance Monitoring"}
                       {agent.name === "Historical Analysis" && "Data Mining → Pattern Recognition → Similarity Scoring → Model Enhancement → Accuracy Validation"}
                       {agent.name === "Prompting" && "Query Reception → Intent Analysis → Agent Coordination → Response Generation → Feedback Collection"}

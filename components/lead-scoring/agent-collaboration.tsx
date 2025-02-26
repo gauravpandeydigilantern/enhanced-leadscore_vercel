@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 const data = [
   { agent: "Prompting", efficiency: 95 },
   { agent: "Engagement Analysis", efficiency: 92 },
-  { agent: "Follow-up AI", efficiency: 78 },
+  { agent: "Follow-up", efficiency: 78 },
   { agent: "Pipeline Optimization", efficiency: 88 },
   { agent: "Historical Analysis", efficiency: 95 },
 ]
