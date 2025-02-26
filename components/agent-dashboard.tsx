@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Activity, Users, TrendingUp, Mail, PieChart, Clock, AlertTriangle } from "lucide-react"
+import { Activity, Users, TrendingUp, Mail, PieChart, Clock } from "lucide-react"
 import Link from "next/link"
 import { AgentNetworkUML } from "./agent-network-uml"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -14,92 +14,67 @@ export function AgentDashboard() {
       name: "Engagement Analysis",
       sequence: "1️⃣",
       icon: Activity,
+      title: "Real-time Interaction Tracking",
       description: "The Six Agents in the Lead Scoring Pipeline",
       decisions: ["Monitors lead interactions", "Calculates engagement scores", "Applies time decay models"],
       accuracy: "95%",
-      capabilities: ["Engagement", "Analytics", "Behavioral"]
+      capabilities: ["Behavioral", "Analytics", "Real-time"],
+      category: "Data Collection"
     },
     {
       name: "Lead Scoring",
       sequence: "2️⃣",
       icon: TrendingUp,
+      title: "ML-Powered Score Generation",
       description: "The Six Agents in the Lead Scoring Pipeline",
       decisions: ["Combines engagement data", "Applies ML models", "Predicts conversion probability"],
       accuracy: "92%",
-      capabilities: ["ML", "Prediction", "Scoring"]
+      capabilities: ["ML", "Prediction", "Analysis"],
+      category: "Evaluation"
     },
     {
       name: "Follow-up AI",
       sequence: "3️⃣",
       icon: Mail,
+      title: "Automated Response System",
       description: "The Six Agents in the Lead Scoring Pipeline",
       decisions: ["Determines optimal follow-up actions", "Selects communication channels", "Uses Multi-Armed Bandit algorithms"],
       accuracy: "94%",
-      capabilities: ["Automation", "Personalization", "Optimization"]
+      capabilities: ["Automation", "Communication", "Optimization"],
+      category: "Action"
     },
     {
       name: "Pipeline Optimization",
       sequence: "4️⃣",
       icon: PieChart,
+      title: "Funnel Performance Analyzer",
       description: "The Six Agents in the Lead Scoring Pipeline",
       decisions: ["Identifies dropoff points", "Suggests improvements", "Adjusts AI model weightings"],
       accuracy: "91%",
-      capabilities: ["Analysis", "Optimization", "Strategy"]
+      capabilities: ["Analysis", "Optimization", "Strategy"],
+      category: "Optimization"
     },
     {
       name: "Historical Analysis",
       sequence: "5️⃣",
       icon: Clock,
+      title: "Pattern Recognition Engine",
       description: "The Six Agents in the Lead Scoring Pipeline",
       decisions: ["Compares current leads", "Calculates similarity scores", "Enhances prediction accuracy"],
       accuracy: "96%",
-      capabilities: ["Pattern Recognition", "Analysis", "Prediction"]
+      capabilities: ["Pattern Recognition", "Analysis", "Historical"],
+      category: "Analysis"
     },
     {
       name: "Prompting",
       sequence: "6️⃣",
       icon: Users,
+      title: "Natural Language Interface",
       description: "The Six Agents in the Lead Scoring Pipeline",
-      decisions: ["Generates dynamic queries across agents", "Creates conversational insights", "Provides real-time recommendations"],
+      decisions: ["Generates dynamic queries", "Creates conversational insights", "Provides real-time recommendations"],
       accuracy: "99%",
-      capabilities: ["Text", "Chat", "Query"]
-    },
-    {
-      name: "Engagement Analysis",
-      icon: Activity,
-      decisions: ["Monitors lead interactions", "Calculates engagement scores", "Applies time decay models"],
-      accuracy: "95%",
-      capabilities: ["Engagement", "Analytics", "Behavioral"]
-    },
-    {
-      name: "Lead Scoring",
-      icon: TrendingUp,
-      decisions: ["Combines engagement data", "Applies ML models", "Predicts conversion probability"],
-      accuracy: "92%",
-      capabilities: ["ML", "Prediction", "Scoring"],
-      hasWarning: true
-    },
-    {
-      name: "Follow-up AI",
-      icon: Mail,
-      decisions: ["Determines optimal follow-up actions", "Selects communication channels", "Uses Multi-Armed Bandit algorithms"],
-      accuracy: "94%",
-      capabilities: ["Automation", "Personalization", "Optimization"]
-    },
-    {
-      name: "Pipeline Optimization",
-      icon: PieChart,
-      decisions: ["Identifies dropoff points", "Suggests improvements", "Adjusts AI model weightings"],
-      accuracy: "91%",
-      capabilities: ["Analysis", "Optimization", "Strategy"]
-    },
-    {
-      name: "Historical Analysis",
-      icon: Clock,
-      decisions: ["Compares current leads", "Calculates similarity scores", "Enhances prediction accuracy"],
-      accuracy: "96%",
-      capabilities: ["Pattern Recognition", "Analysis", "Prediction"],
-      errors: 1
+      capabilities: ["NLP", "Query", "Communication"],
+      category: "Interface"
     }
   ]
 
@@ -119,30 +94,24 @@ export function AgentDashboard() {
                     <span className="text-xl font-bold">{agent.sequence}</span>
                     <agent.icon className="h-5 w-5 text-primary" />
                   </div>
+                  <Badge variant="outline" className="text-lg font-semibold">
+                    {agent.accuracy}
+                  </Badge>
                 </div>
                 <CardTitle className="text-lg">{agent.name}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
-                  {agent.description}
-                </CardDescription>
+                <CardDescription>{agent.title}</CardDescription>
+                <Badge variant="secondary" className="mt-1">{agent.category}</Badge>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 mb-4">
-                  {Array.isArray(agent.decisions) ? (
-                    agent.decisions.map((decision, i) => (
-                      <p key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                        {decision}
-                      </p>
-                    ))
-                  ) : (
-                    <p className="text-sm text-muted-foreground">{agent.decisions}</p>
-                  )}
+                  {agent.decisions.map((decision, i) => (
+                    <p key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                      {decision}
+                    </p>
+                  ))}
                 </div>
-                <div className="mb-4">
-                  <p className="text-2xl font-bold">{agent.accuracy}</p>
-                  <p className="text-xs text-muted-foreground">Accuracy</p>
-                </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {agent.capabilities.map((capability) => (
                     <Badge key={capability} variant="secondary" className="capitalize">
                       {capability}
