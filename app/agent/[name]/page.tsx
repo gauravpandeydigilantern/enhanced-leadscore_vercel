@@ -33,45 +33,41 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
         <h1 className="text-3xl font-bold mb-6">{agentName} Dashboard</h1>
 
         <div className="grid gap-4 md:grid-cols-3">
-          <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-lg font-semibold">Performance</CardTitle>
-              <CheckCircle className="h-5 w-5 text-green-500" />
+              <CardTitle className="text-sm font-medium">Goal</CardTitle>
+              <Target className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400">92%</div>
-              <p className="text-sm text-muted-foreground mt-1">Accuracy Rate</p>
-              <div className="mt-4 pt-4 border-t">
-                <p className="text-sm">Daily improvement rate: +0.5%</p>
-              </div>
+              <p className="text-sm text-muted-foreground">
+                Evaluate and rank leads based on their likelihood to convert using ML models and behavioral data analysis
+              </p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-lg font-semibold">Processing</CardTitle>
-              <Clock className="h-5 w-5 text-blue-500" />
+              <CardTitle className="text-sm font-medium">Action</CardTitle>
+              <Activity className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">95ms</div>
-              <p className="text-sm text-muted-foreground mt-1">Average Latency</p>
-              <div className="mt-4 pt-4 border-t">
-                <p className="text-sm">Peak performance: 85ms</p>
-              </div>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• Combines engagement data</li>
+                <li>• Applies ML models</li>
+                <li>• Predicts conversion probability</li>
+              </ul>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-lg font-semibold">Decisions</CardTitle>
-              <LineChart className="h-5 w-5 text-purple-500" />
+              <CardTitle className="text-sm font-medium">Workflow</CardTitle>
+              <Brain className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">3,456</div>
-              <p className="text-sm text-muted-foreground mt-1">Total Processed</p>
-              <div className="mt-4 pt-4 border-t">
-                <p className="text-sm">Success rate: 98.5%</p>
-              </div>
+              <p className="text-sm text-muted-foreground">
+                Data Collection → Feature Engineering → ML Model Application → Score Generation → CRM Update
+              </p>
             </CardContent>
           </Card>
         </div>
