@@ -21,6 +21,7 @@ import {
   Users,
   Layers,
   Scale,
+  Target,
 } from "lucide-react";
 import Link from "next/link";
 import { ContextDecisions } from "@/components/lead-scoring/context-decisions";
