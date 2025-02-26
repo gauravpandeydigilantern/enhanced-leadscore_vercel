@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
 import {
   Card,
@@ -36,11 +36,12 @@ import { ReasoningAbilities } from "@/components/lead-scoring/reasoning-abilitie
 export default function LeadScoringAgentDashboard() {
   const [isActive, setIsActive] = useState(true);
 
-  return (
-    <TooltipProvider>
   const [isAutomatic, setIsAutomatic] = useState(true);
   const [confidence, setConfidence] = useState([75]);
   const [riskTolerance, setRiskTolerance] = useState([50]);
+
+  return (
+    <TooltipProvider>
   const [processingPriority, setProcessingPriority] = useState([5]);
 
   return (
