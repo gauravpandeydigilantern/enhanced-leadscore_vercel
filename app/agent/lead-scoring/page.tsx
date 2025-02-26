@@ -16,6 +16,12 @@ import { MultimodalCapabilities } from "@/components/lead-scoring/multimodal-cap
 import { ReasoningAbilities } from "@/components/lead-scoring/reasoning-abilities"
 
 export default function LeadScoringAgentDashboard() {
+  const [isActive, setIsActive] = useState(true);
+  const [isAutomatic, setIsAutomatic] = useState(true);
+  const [confidence, setConfidence] = useState([75]);
+  const [riskTolerance, setRiskTolerance] = useState([50]);
+  const [processingPriority, setProcessingPriority] = useState([5]);
+  
   return (
     <div className="container mx-auto p-4">
       <Button variant="ghost" asChild className="mb-4">
@@ -29,7 +35,7 @@ export default function LeadScoringAgentDashboard() {
         <h1 className="text-3xl font-bold">Lead Scoring Agent Dashboard</h1>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <Switch id="agent-status" />
+            <Switch id="agent-status" checked={isActive} onCheckedChange={setIsActive} />
             <label htmlFor="agent-status">Active</label>
           </div>
           <Button variant="outline">Reset Agent</Button>
@@ -75,18 +81,18 @@ export default function LeadScoringAgentDashboard() {
           <div className="space-y-2">
             <label className="text-sm font-medium">Automatic Mode</label>
             <div className="flex items-center gap-2">
-              <Switch id="automatic-mode" />
+              <Switch id="automatic-mode" checked={isAutomatic} onCheckedChange={setIsAutomatic} />
               <span className="text-sm text-muted-foreground">Enable automatic decisions</span>
             </div>
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium">Confidence Threshold</label>
-            <Slider defaultValue={[75]} max={100} step={1} className="w-full" />
+            <Slider value={confidence} onValueChange={setConfidence} max={100} step={1} className="w-full" />
             <span className="text-sm text-muted-foreground">Minimum confidence score required for automatic decisions</span>
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium">Processing Priority</label>
-            <Slider defaultValue={[50]} max={100} step={1} className="w-full" />
+            <Slider value={processingPriority} onValueChange={setProcessingPriority} max={10} min={1} step={1} className="w-full" />
             <span className="text-sm text-muted-foreground">Set priority level for lead processing</span>
           </div>
         </CardContent>
