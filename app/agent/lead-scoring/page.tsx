@@ -3,6 +3,8 @@
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Info } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -113,7 +115,17 @@ export default function LeadScoringAgentDashboard() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Automatic Mode</label>
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium">Automatic Mode</label>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="h-4 w-4 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-xs">When enabled, the agent will autonomously make lead scoring decisions without human intervention. This increases efficiency but requires careful threshold configuration.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
             <div className="flex items-center gap-2">
               <Switch
                 id="automatic-mode"
@@ -126,7 +138,17 @@ export default function LeadScoringAgentDashboard() {
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">Confidence Threshold</label>
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium">Confidence Threshold</label>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="h-4 w-4 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-xs">Sets the minimum confidence level (0-100%) required for the agent to make automatic decisions. Higher thresholds mean more accurate but fewer automatic decisions.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
             <Slider
               value={confidence}
               onValueChange={setConfidence}
@@ -134,12 +156,24 @@ export default function LeadScoringAgentDashboard() {
               step={1}
               className="w-full"
             />
-            <span className="text-sm text-muted-foreground">
-              Minimum confidence score required for automatic decisions
-            </span>
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>Min: 0%</span>
+              <span>Current: {confidence}%</span>
+              <span>Max: 100%</span>
+            </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">Processing Priority</label>
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium">Processing Priority</label>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="h-4 w-4 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-xs">Determines the priority level (1-10) for processing leads. Higher priority means faster processing but more resource usage. Use higher values for time-sensitive leads.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
             <Slider
               value={processingPriority}
               onValueChange={setProcessingPriority}
@@ -148,9 +182,11 @@ export default function LeadScoringAgentDashboard() {
               step={1}
               className="w-full"
             />
-            <span className="text-sm text-muted-foreground">
-              Set priority level for lead processing
-            </span>
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>Low: 1</span>
+              <span>Current: {processingPriority}</span>
+              <span>High: 10</span>
+            </div>
           </div>
         </CardContent>
       </Card>
