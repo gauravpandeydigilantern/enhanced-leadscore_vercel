@@ -102,13 +102,40 @@ export function AgentDashboard() {
                 <Badge variant="secondary" className="mt-1">{agent.category}</Badge>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 mb-4">
-                  {agent.decisions.map((decision, i) => (
-                    <p key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                      {decision}
+                <div className="space-y-4 mb-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Goal</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {agent.name === "Lead Scoring" && "Evaluate and rank leads based on their likelihood to convert using ML models and behavioral data"}
+                      {agent.name === "Engagement Analysis" && "Track and analyze all lead interactions to generate meaningful engagement metrics"}
+                      {agent.name === "Follow-up AI" && "Automate and optimize lead follow-up actions based on scoring and engagement data"}
+                      {agent.name === "Pipeline Optimization" && "Identify and resolve bottlenecks in the sales funnel to improve conversion rates"}
+                      {agent.name === "Historical Analysis" && "Learn from past successful conversions to improve future lead scoring accuracy"}
+                      {agent.name === "Prompting" && "Provide natural language interface for sales team to interact with the AI system"}
                     </p>
-                  ))}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Actions</h4>
+                    <ul className="space-y-1">
+                      {agent.decisions.map((decision, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                          {decision}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Workflow</h4>
+                    <p className="text-sm text-muted-foreground">
+                      {agent.name === "Lead Scoring" && "Data Collection → Feature Engineering → ML Model Application → Score Generation → CRM Update"}
+                      {agent.name === "Engagement Analysis" && "Event Tracking → Data Processing → Score Calculation → Time Decay Application → Metric Output"}
+                      {agent.name === "Follow-up AI" && "Score Analysis → Channel Selection → Content Generation → Action Execution → Performance Tracking"}
+                      {agent.name === "Pipeline Optimization" && "Funnel Analysis → Bottleneck Detection → Strategy Generation → Model Adjustment → Performance Monitoring"}
+                      {agent.name === "Historical Analysis" && "Data Mining → Pattern Recognition → Similarity Scoring → Model Enhancement → Accuracy Validation"}
+                      {agent.name === "Prompting" && "Query Reception → Intent Analysis → Agent Coordination → Response Generation → Feedback Collection"}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {agent.capabilities.map((capability) => (
