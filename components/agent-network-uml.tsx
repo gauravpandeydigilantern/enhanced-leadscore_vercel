@@ -34,7 +34,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-6">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">AGnet Network Dashboard</h1>
+          <h1 className="text-4xl font-bold">Agent Network </h1>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
