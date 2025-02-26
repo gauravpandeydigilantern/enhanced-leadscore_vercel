@@ -14,36 +14,37 @@ export function LineChart({ data, xAxisLabel, yAxisLabel }: {
     <p className="text-sm text-gray-600 mb-4">This chart displays the conversion rate trends over time, helping identify key patterns and fluctuations.</p>
 
     <ResponsiveContainer width="100%" height={300}>
-      <RechartsLineChart data={data} margin={{ top: 20, right: 30, left: 70, bottom: 50 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-        <XAxis 
-          dataKey="date" 
-          label={{ 
-            value: xAxisLabel, 
-            position: 'bottom', 
-            offset: 10, 
-            style: { fontSize: '12px', fill: '#333' } 
-          }}
-          tick={{ fontSize: '12px' }} 
-        />
-        <YAxis
-          label={{ 
-            value: 'Conversion Rate (%)', 
-            angle: -90, 
-            position: 'insideLeft',
-            style: { fontSize: '12px', fill: '#333' }
-          }}
-          tickFormatter={(tick) => `${tick}%`}
-          tick={{ fontSize: '12px' }}
-        />
-        <Tooltip 
-          formatter={(value) => [`${value}%`, 'Conversion Rate']} 
-          labelFormatter={(label) => `Date: ${label}`}
-        />
-        <Legend verticalAlign="top" height={36} />
-        <Line type="monotone" dataKey="rate" stroke="#8884d8" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-      </RechartsLineChart>
-    </ResponsiveContainer>
+  <RechartsLineChart data={data} margin={{ top: 20, right: 50, left: 70, bottom: 50 }}>
+    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+    <XAxis 
+      dataKey="date" 
+      label={{ 
+        value: xAxisLabel, 
+        position: 'bottom', 
+        offset: 10, 
+        style: { fontSize: '12px', fill: '#333' } 
+      }}
+      tick={{ fontSize: '12px' }} 
+    />
+    <YAxis
+      label={{ 
+        value: 'Conversion Rate (%)', 
+        angle: -90, 
+        position: 'center',
+        dx:-20,
+        style: { fontSize: '12px', fill: '#333' }
+      }}
+      tickFormatter={(tick) => `${tick}%`}
+      tick={{ fontSize: '12px' }}
+    />
+    <Tooltip 
+      formatter={(value) => [`${value}%`, 'Conversion Rate']} 
+      labelFormatter={(label) => `Date: ${label}`}
+    />
+    <Line type="monotone" dataKey="rate" stroke="#8884d8" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+  </RechartsLineChart>
+</ResponsiveContainer>
+
   </div>
   )
 }

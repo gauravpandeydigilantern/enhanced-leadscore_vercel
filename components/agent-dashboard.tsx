@@ -1,12 +1,25 @@
 "use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Activity, Users, TrendingUp, Mail, PieChart, Clock } from "lucide-react"
-import Link from "next/link"
-import { AgentNetworkUML } from "./agent-network-uml"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "./ui/badge"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Activity,
+  Users,
+  TrendingUp,
+  Mail,
+  PieChart,
+  Clock,
+} from "lucide-react";
+import Link from "next/link";
+import { AgentNetworkUML } from "./agent-network-uml";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "./ui/badge";
 
 export function AgentDashboard() {
   const agents = [
@@ -16,10 +29,14 @@ export function AgentDashboard() {
       icon: Activity,
       title: "Real-time Interaction Tracking",
       description: "The Six Agents in the Lead Scoring Pipeline",
-      decisions: ["Monitors lead interactions", "Calculates engagement scores", "Applies time decay models"],
+      decisions: [
+        "Monitors lead interactions",
+        "Calculates engagement scores",
+        "Applies time decay models",
+      ],
       accuracy: "95%",
       capabilities: ["Behavioral", "Analytics", "Real-time"],
-      category: "Data Collection"
+      category: "Data Collection",
     },
     {
       name: "Lead Scoring",
@@ -27,10 +44,14 @@ export function AgentDashboard() {
       icon: TrendingUp,
       title: "ML-Powered Score Generation",
       description: "The Six Agents in the Lead Scoring Pipeline",
-      decisions: ["Combines engagement data", "Applies ML models", "Predicts conversion probability"],
+      decisions: [
+        "Combines engagement data",
+        "Applies ML models",
+        "Predicts conversion probability",
+      ],
       accuracy: "92%",
       capabilities: ["ML", "Prediction", "Analysis"],
-      category: "Evaluation"
+      category: "Evaluation",
     },
     {
       name: "Follow-up AI",
@@ -38,10 +59,14 @@ export function AgentDashboard() {
       icon: Mail,
       title: "Automated Response System",
       description: "The Six Agents in the Lead Scoring Pipeline",
-      decisions: ["Determines optimal follow-up actions", "Selects communication channels", "Uses Multi-Armed Bandit algorithms"],
+      decisions: [
+        "Determines optimal follow-up actions",
+        "Selects communication channels",
+        "Uses Multi-Armed Bandit algorithms",
+      ],
       accuracy: "94%",
       capabilities: ["Automation", "Communication", "Optimization"],
-      category: "Action"
+      category: "Action",
     },
     {
       name: "Pipeline Optimization",
@@ -49,10 +74,14 @@ export function AgentDashboard() {
       icon: PieChart,
       title: "Funnel Performance Analyzer",
       description: "The Six Agents in the Lead Scoring Pipeline",
-      decisions: ["Identifies dropoff points", "Suggests improvements", "Adjusts AI model weightings"],
+      decisions: [
+        "Identifies dropoff points",
+        "Suggests improvements",
+        "Adjusts AI model weightings",
+      ],
       accuracy: "91%",
       capabilities: ["Analysis", "Optimization", "Strategy"],
-      category: "Optimization"
+      category: "Optimization",
     },
     {
       name: "Historical Analysis",
@@ -60,10 +89,14 @@ export function AgentDashboard() {
       icon: Clock,
       title: "Pattern Recognition Engine",
       description: "The Six Agents in the Lead Scoring Pipeline",
-      decisions: ["Compares current leads", "Calculates similarity scores", "Enhances prediction accuracy"],
+      decisions: [
+        "Compares current leads",
+        "Calculates similarity scores",
+        "Enhances prediction accuracy",
+      ],
       accuracy: "96%",
       capabilities: ["Pattern Recognition", "Analysis", "Historical"],
-      category: "Analysis"
+      category: "Analysis",
     },
     {
       name: "Prompting",
@@ -71,12 +104,16 @@ export function AgentDashboard() {
       icon: Users,
       title: "Natural Language Interface",
       description: "The Six Agents in the Lead Scoring Pipeline",
-      decisions: ["Generates dynamic queries", "Creates conversational insights", "Provides real-time recommendations"],
+      decisions: [
+        "Generates dynamic queries",
+        "Creates conversational insights",
+        "Provides real-time recommendations",
+      ],
       accuracy: "99%",
       capabilities: ["NLP", "Query", "Communication"],
-      category: "Interface"
-    }
-  ]
+      category: "Interface",
+    },
+  ];
 
   return (
     <Tabs defaultValue="grid" className="w-full space-y-4">
@@ -87,7 +124,10 @@ export function AgentDashboard() {
       <TabsContent value="grid">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {agents.map((agent) => (
-            <Card key={agent.name} className="hover:shadow-lg transition-shadow">
+            <Card
+              key={agent.name}
+              className="hover:shadow-lg transition-shadow"
+            >
               <CardHeader className="space-y-1">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -99,22 +139,30 @@ export function AgentDashboard() {
                   </span>
                 </div>
                 <CardDescription>{agent.title}</CardDescription>
-                <Badge variant="secondary" className="mt-1">{agent.category}</Badge>
+                <Badge variant="secondary" className="mt-1">
+                  {agent.category}
+                </Badge>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4 mb-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Goal</h4>
+                    {/* <h4 className="font-semibold mb-2">Goal</h4> */}
                     <p className="text-sm text-muted-foreground">
-                      {agent.name === "Lead Scoring" && "Evaluate and rank leads based on their likelihood to convert using ML models and behavioral data"}
-                      {agent.name === "Engagement Analysis" && "Track and analyze all lead interactions to generate meaningful engagement metrics"}
-                      {agent.name === "Follow-up AI" && "Automate and optimize lead follow-up actions based on scoring and engagement data"}
-                      {agent.name === "Pipeline Optimization" && "Identify and resolve bottlenecks in the sales funnel to improve conversion rates"}
-                      {agent.name === "Historical Analysis" && "Learn from past successful conversions to improve future lead scoring accuracy"}
-                      {agent.name === "Prompting" && "Provide natural language interface for sales team to interact with the AI system"}
+                      {agent.name === "Lead Scoring" &&
+                        "Evaluate and rank leads based on their likelihood to convert using ML models and behavioral data"}
+                      {agent.name === "Engagement Analysis" &&
+                        "Track and analyze all lead interactions to generate meaningful engagement metrics"}
+                      {agent.name === "Follow-up AI" &&
+                        "Automate and optimize lead follow-up actions based on scoring and engagement data"}
+                      {agent.name === "Pipeline Optimization" &&
+                        "Identify and resolve bottlenecks in the sales funnel to improve conversion rates"}
+                      {agent.name === "Historical Analysis" &&
+                        "Learn from past successful conversions to improve future lead scoring accuracy"}
+                      {agent.name === "Prompting" &&
+                        "Provide natural language interface for sales team to interact with the AI system"}
                     </p>
                   </div>
-                  <div>
+                  {/* <div>
                     <h4 className="font-semibold mb-2">Actions</h4>
                     <ul className="space-y-1">
                       {agent.decisions.map((decision, i) => (
@@ -124,8 +172,8 @@ export function AgentDashboard() {
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <h4 className="font-semibold mb-2">Workflow</h4>
                     <p className="text-sm text-muted-foreground">
                       {agent.name === "Lead Scoring" && "Data Collection → Feature Engineering → ML Model Application → Score Generation → CRM Update"}
@@ -135,17 +183,25 @@ export function AgentDashboard() {
                       {agent.name === "Historical Analysis" && "Data Mining → Pattern Recognition → Similarity Scoring → Model Enhancement → Accuracy Validation"}
                       {agent.name === "Prompting" && "Query Reception → Intent Analysis → Agent Coordination → Response Generation → Feedback Collection"}
                     </p>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {agent.capabilities.map((capability) => (
-                    <Badge key={capability} variant="secondary" className="capitalize">
+                    <Badge
+                      key={capability}
+                      variant="secondary"
+                      className="capitalize"
+                    >
                       {capability}
                     </Badge>
                   ))}
                 </div>
                 <Button className="mt-4 w-full" variant="outline" asChild>
-                  <Link href={`/agent/${agent.name.toLowerCase().replace(" ", "-")}`}>View Details</Link>
+                  <Link
+                    href={`/agent/${agent.name.toLowerCase().replace(" ", "-")}`}
+                  >
+                    View Details
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -156,5 +212,5 @@ export function AgentDashboard() {
         <AgentNetworkUML />
       </TabsContent>
     </Tabs>
-  )
+  );
 }

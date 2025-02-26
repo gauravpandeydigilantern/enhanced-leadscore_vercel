@@ -236,6 +236,8 @@ export default function LeadScoringAgentDashboard() {
           <ReasoningAbilities />
         </TabsContent>
       </Tabs>
+    
+    
     </div>
     </TooltipProvider>
   );
