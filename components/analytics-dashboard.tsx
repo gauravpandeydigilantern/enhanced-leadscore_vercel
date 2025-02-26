@@ -5,6 +5,16 @@ import { LineChart, BarChart, HeatMap } from "@/components/charts"
 import { LeadTable } from "@/components/lead-table"
 
 export function AnalyticsDashboard() {
+
+  const data = [
+    { stage: "Awareness", conversion: 100, dropoff: 0, insight: "Initial reach" },
+    { stage: "Interest", conversion: 75, dropoff: 25, insight: "Content engagement needed" },
+    { stage: "Consideration", conversion: 50, dropoff: 25, insight: "Value proposition unclear" },
+    { stage: "Intent", conversion: 35, dropoff: 15, insight: "Price sensitivity" },
+    { stage: "Evaluation", conversion: 25, dropoff: 10, insight: "Competitor comparison" },
+    { stage: "Purchase", conversion: 15, dropoff: 10, insight: "Final objections" },
+  ];
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <Card className="col-span-2 hover:shadow-lg transition-all duration-200">
@@ -49,8 +59,29 @@ export function AnalyticsDashboard() {
           <LeadTable />
         </CardContent>
       </Card>
-
-      <Card className="hover:shadow-lg transition-all duration-200">
+    <Card className="hover:shadow-lg transition-all duration-200">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-semibold">Bottleneck Insights</CardTitle>
+        </CardHeader>
+        <CardContent style={{height: "315px",overflow: "auto"}}>
+          
+      <ul className="space-y-4" >
+        {data.map((item, index) => (
+          <li key={index} className="p-4 border-l-4 rounded-lg shadow-sm" style={{ 
+            borderColor: `hsl(${180 - index * 30}, 70%, 50%)`, 
+            padding: "0.5rem", 
+            fontSize: "12px", 
+            lineHeight: "16px" 
+          }}>
+            <div className="text-lg font-semibold" style={{fontSize: "15px"}}>{item.stage}</div>
+            <div className="text-gray-600">✅ {item.conversion}% Conversion | ❌ {item.dropoff}% Dropoff</div>
+            <div className="text-sm text-gray-500 italic">🔍 Insight: {item.insight}</div>
+          </li>
+        ))}
+      </ul>
+        </CardContent>
+      </Card>
+      {/* <Card className="hover:shadow-lg transition-all duration-200">
         <CardHeader className="space-y-1">
           <CardTitle className="text-xl font-semibold">Bottleneck Insights</CardTitle>
         </CardHeader>
@@ -82,7 +113,7 @@ export function AnalyticsDashboard() {
             </div>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
 
       <Card className="hover:shadow-lg transition-all duration-200">
         <CardHeader className="space-y-1">

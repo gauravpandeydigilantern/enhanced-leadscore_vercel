@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Activity, Users, TrendingUp, Mail, PieChart, Clock, AlertTriangle } from "lucide-react"
 import Link from "next/link"
-import { AgentNetworkUML } from "./agent-network-uml"
+// import { AgentNetworkUML } from "./agent-network-uml"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "./ui/badge"
+import AgentNetworkUML from "./agent-network-uml";
 
 export function AgentDashboard() {
   const agents = [
