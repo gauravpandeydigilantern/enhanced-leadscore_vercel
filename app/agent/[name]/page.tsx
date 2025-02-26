@@ -5,15 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
-import { ArrowLeft, Target, Activity, Bell, Brain, AlertCircle, Power, Gauge, Shield, CheckCircle, Clock, LineChart } from "lucide-react";
+import { ArrowLeft, Target, Activity, Bell, Brain, AlertCircle, Power, Gauge, Shield, CheckCircle, Clock, LineChart, InfoCircle } from "lucide-react";
 import Link from "next/link";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+
 
 export default function AgentMetrics({ params }: { params: { name: string } }) {
   const [isActive, setIsActive] = useState(true);
   const [isAutomatic, setIsAutomatic] = useState(true);
-  const [confidence, setConfidence] = useState([0.7]);
-  const [riskTolerance, setRiskTolerance] = useState([0.5]);
-  const [autonomyLevel, setAutonomyLevel] = useState([0.8]);
+  const [confidence, setConfidence] = useState([75]); // Changed default value to 75
+  const [processingPriority, setProcessingPriority] = useState([5]); // Added state for processing priority
 
   const agentName = params.name
     .split("-")
@@ -111,11 +112,15 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
                 <Slider
                   value={confidence}
                   onValueChange={setConfidence}
-                  max={1}
-                  step={0.1}
+                  max={100}
+                  min={0}
+                  step={1}
                   className="w-full"
                 />
-                <div className="text-right text-sm">{confidence[0] * 100}%</div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Min: 0%</span>
+                  <span>Max: 100%</span>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -129,13 +134,13 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
             <CardContent>
               <div className="space-y-4">
                 <Slider
-                  value={riskTolerance}
+                  value={[0.5]}
                   onValueChange={setRiskTolerance}
                   max={1}
                   step={0.1}
                   className="w-full"
                 />
-                <div className="text-right text-sm">{riskTolerance[0] * 100}%</div>
+                <div className="text-right text-sm">50%</div>
               </div>
             </CardContent>
           </Card>
@@ -218,6 +223,84 @@ export default function AgentMetrics({ params }: { params: { name: string } }) {
                 <div className="text-sm">
                   <p className="font-medium">Risk Assessment Complete</p>
                   <p className="text-muted-foreground">1 hour ago</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Agent Controls</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm font-medium">Automatic Mode</label>
+                    <Tooltip delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <InfoCircle className="h-4 w-4 text-muted-foreground" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>When enabled, the agent will make decisions without human intervention based on confidence threshold</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Switch id="automatic-mode" checked={isAutomatic} onCheckedChange={setIsAutomatic} />
+                    <span className="text-sm text-muted-foreground">Enable automatic decisions</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm font-medium">Confidence Threshold</label>
+                    <Tooltip delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <InfoCircle className="h-4 w-4 text-muted-foreground" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Set the minimum confidence level required for the agent to make autonomous decisions (0-100%)</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <Slider
+                    defaultValue={[75]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    className="w-full"
+                    value={confidence}
+                    onValueChange={setConfidence}
+                  />
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>Min: 0%</span>
+                    <span>Max: 100%</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <label className="text-sm font-medium">Processing Priority</label>
+                    <Tooltip delayDuration={300}>
+                      <TooltipTrigger asChild>
+                        <InfoCircle className="h-4 w-4 text-muted-foreground" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Adjust the priority level for processing leads (1-10, higher values indicate higher priority)</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <Slider
+                    defaultValue={[5]}
+                    min={1}
+                    max={10}
+                    step={1}
+                    className="w-full"
+                    value={processingPriority}
+                    onValueChange={setProcessingPriority}
+                  />
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>Low: 1</span>
+                    <span>High: 10</span>
+                  </div>
                 </div>
               </div>
             </CardContent>
