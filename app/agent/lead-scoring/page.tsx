@@ -35,16 +35,13 @@ import { ReasoningAbilities } from "@/components/lead-scoring/reasoning-abilitie
 
 export default function LeadScoringAgentDashboard() {
   const [isActive, setIsActive] = useState(true);
-
   const [isAutomatic, setIsAutomatic] = useState(true);
   const [confidence, setConfidence] = useState([75]);
   const [riskTolerance, setRiskTolerance] = useState([50]);
-
-  return (
-    <TooltipProvider>
   const [processingPriority, setProcessingPriority] = useState([5]);
 
   return (
+    <TooltipProvider>
     <div className="container mx-auto p-4">
       <Button variant="ghost" asChild className="mb-4">
         <Link href="/">
